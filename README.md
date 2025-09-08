@@ -32,8 +32,8 @@ This repository documents my **project-driven learning journey** through **PHP: 
 **Time Allocation: 12-15 hours**
 
 #### Core Reading (Must-Read Sections):
-- [ ] **Welcome & Getting Started** - Overview and motivation
-- [ ] **Use the Current Stable Version** - PHP 8.3+ setup
+- [x] **Welcome & Getting Started** - Overview and motivation
+- [x] **Use the Current Stable Version** - PHP 8.3+ setup
 - [ ] **Code Style Guide** - PSR-1, PSR-2, PSR-12 standards
 - [ ] **Namespaces** - Basic organization principles
 - [ ] **Composer and Packagist** - Essential dependency management
