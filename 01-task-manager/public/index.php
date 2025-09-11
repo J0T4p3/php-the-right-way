@@ -21,11 +21,7 @@ function setupTasks()
     return true; // file already existed
 }
 
-if (setupTasks()) {
-    echo "Found tasks file!" . PHP_EOL;
-} else {
-    echo "Tasks file not found. New one created!" . PHP_EOL;
-}
+setupTasks();
 
 function getTasksFile()
 {
@@ -104,9 +100,8 @@ $task = [
 <html>
 
 <body>
-
-    <h1>My First Heading</h1>
-    <p>My first paragraph.</p>
+    <h1>Tasks management</h1>
+    <p>View your tasks</p>
 
 </body>
 
