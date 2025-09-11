@@ -2,7 +2,7 @@
 
 const TASKSFILE = "tasks.json";
 
-# Setting up tasks database file
+# Setting up tasks "database" file
 function setupTasks()
 {
     if (!file_exists(TASKSFILE)) {
@@ -45,8 +45,6 @@ function saveTasksToFile($tasks)
     if (file_put_contents(TASKSFILE, $tasksJSON) === false) {
         throw new RuntimeException("Failed to store tasks file: TASKSFILE");
     }
-
-    echo "task created!", PHP_EOL;
 }
 
 # Configuring CRUD operations for tasks
@@ -58,6 +56,28 @@ function saveTasksToFile($tasks)
  * }
  **/
 
+function getAllTasks()
+{
+    $tasksFile = getTasksFile();
+    return $tasksFile['tasks'];
+}
+
+function getTask($taskId)
+{
+    $tasksFile = getTasksFile();
+    return $tasksFile['tasks']["$taskId"];
+}
+
+function toggleTask($taskId)
+{
+    $tasksFile = getTasksFile();
+    $tasks = $tasksFile['tasks'];
+    $task = $tasks["$taskId"];
+    $task["completed"] = !$task["completed"];
+    $tasks["$taskId"] = $task;
+    saveTasksToFile($tasks);
+}
+
 function createTask($task)
 {
     $tasksFile = getTasksFile();
@@ -66,9 +86,28 @@ function createTask($task)
     saveTasksToFile($tasks);
 }
 
-$task = [
-    "nome" => "outro teste",
-    "completed" => true,
-];
+function deleteTask($taskId)
+{
+    $tasksFile = getTasksFile();
+    $tasks = $tasksFile['tasks'];
+    unset($tasks[$taskId]);
+    saveTasksToFile($tasks);
+}
 
-createTask($task);
+$task = [
+    "nome" => "Quarto teste",
+    "completed" => false,
+];
+?>
+
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <h1>My First Heading</h1>
+    <p>My first paragraph.</p>
+
+</body>
+
+</html>
