@@ -79,7 +79,9 @@ function createTask($taskTitle)
     $tasksFile = getTasksFile();
     $tasks = $tasksFile['tasks'];
 
-    $tasks[] = ['name' => $taskTitle, 'completed' => false,];
+    $newTask = ['name' => $taskTitle, 'completed' => false,];
+
+    $tasks[] = $newTask;
     saveTasksToFile($tasks);
 }
 
@@ -142,20 +144,20 @@ function deleteTask($taskId)
             <?php
 
             // Inclui nova tarefa, se houver
-            $newTask = $_GET["newTask"];
+            $newTask = $_GET["newTask"] ?? false;
             if ($newTask) {
                 createTask($newTask);
             }
 
             // remove a tarefa, se houver
-            $delTask = $_GET["delTask"];
-            if ($delTask) {
+            $delTask = $_GET["delTask"] ?? false;
+            if (is_numeric($delTask)) {
                 deleteTask($delTask);
             }
 
             // Completa a tarefa
-            $toggTask = $_GET["toggTask"];
-            if ($toggTask) {
+            $toggTask = $_GET["toggTask"] ?? false;
+            if (is_numeric($toggTask)) {
                 toggleTask($toggTask);
             }
 
@@ -182,10 +184,10 @@ function deleteTask($taskId)
                                     </form>
                                 </div>
                             </div>
-                            <div class="card-footer">
+                            <div class="card-footer d-flex">
                                 <form>
                                     <input name='delTask' value='<?= $id ?>' hidden>
-                                    <button type="submit" class="btn btn-primary">Excluir</button>
+                                    <button type="submit" class="btn btn-danger">Excluir</button>
                                 </form>
                             </div>
                         </div>
